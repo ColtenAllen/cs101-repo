@@ -1,57 +1,6 @@
 import random 
-    
-deck_dict = {'ace': 1, 
-'2': 2, 
-'3': 3, 
-'4': 4, 
-'5': 5,
-'6': 6,
-'7': 7,
-'8': 8, 
-'9': 9,
-'10': 10,
-'jack': 10,
-'queen': 10,
-'king': 10,
-'ace': 1, 
-'2': 2,
-'3': 3,
-'4': 4,
-'5': 5,
-'6': 6,
-'7': 7,
-'8': 8,
-'9': 9,
-'10': 10,
-'jack': 10,
-'queen': 10,
-'king': 10,
-'ace': 1, 
-'2': 2,
-'3': 3,
-'4': 4,
-'5': 5,
-'6': 6,
-'7': 7,
-'8': 8,
-'9': 9,
-'10': 10,
-'jack': 10,
-'queen': 10,
-'king': 10,
-'ace': 1, 
-'2': 2,
-'3': 3,
-'4': 4,
-'5': 5,
-'6': 6,
-'7': 7,
-'8': 8,
-'9': 9,
-'10': 10,
-'jack': 10,
-'queen': 10,
-'king': 10}
+from deckDictionary import deck_dict    
+
 
 def play_game():
     game = Deck(deck_dict)
@@ -107,13 +56,13 @@ class Deck:
     def show_dealer_card(self):  # shows dealers first dealt card to player
         print(f"Dealer shows: {self.dealer_cards[0]}")
 
-    def sum_player_cards(self):
+    def sum_player_cards(self):  # sums player cards
         total = 0
         for card in self.player_cards:
             total += deck_dict[card]
         return total
 
-    def sum_dealer_cards(self):
+    def sum_dealer_cards(self):  # sums dealer cards
         total = 0
         for card in self.dealer_cards:
             total += deck_dict[card]
