@@ -4,24 +4,23 @@ from deckDictionary import deck_dict
 def play_game():
     game = Deck(deck_dict)  # instantiates instance of Deck
     print("SkunkRat Productions Presents: Blackjack")
+
     # Begins game
-    ready = input("Are you ready to play? ")
+    ready = input("Are you ready to play?\n")
     if ready.lower() == "yes":
         game.deal()
         game.show_player_cards()
-        game.show_dealer_card() 
+        print()
+        game.show_dealer_card()
+        print() 
     else:
         print("Goodbye")
         quit()
+
     # check if player dealt 21
-    if game.player_total < 21 and game.dealer_total != 21:
-        game.player_hit_or_stand()
-    elif game.dealer_total != 21:
-        print("You win!")
-        quit()  # I want to add play again fucntionality at some point here and after the 'else' statement below
-    else:
-        print("Stand Off")
-        quit()
+    game.player_21()
+
+
     
         
 
@@ -56,10 +55,23 @@ class Deck:
         return self.player_cards, self.dealer_cards, self.dealer_total, self.player_total
 
     def player_hit_or_stand(self):  # this will prompt player to hit or stand
-        hit_or_stand = input("Hit or Stand: ")
+        hit_or_stand = input("Hit or Stand:\n")
         if hit_or_stand.lower() == "hit":
             self.player_cards.append(random.choice(list(self.cards)))
-            return self.player_cards, self.show_player_cards()
+            self.player_total = self.sum_player_cards()
+            return self.player_cards, self.show_player_cards(), self.player_total
+        #else:
+
+    def player_21(self):
+        if self.player_total < 21 and self.dealer_total != 21:
+            self.player_hit_or_stand()
+        elif self.dealer_total != 21:
+            print("You win!")
+            quit()  # I want to add play again fucntionality at some point here and after the 'else' statement below
+        else:
+            print("Stand Off")
+            quit()
+
 
         
 
@@ -80,9 +92,6 @@ class Deck:
         for card in self.dealer_cards:
             total += deck_dict[card]
         return total
-
-
-
 
 
 
