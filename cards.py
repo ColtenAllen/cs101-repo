@@ -1,7 +1,6 @@
 import random 
 from deckDictionary import deck_dict    
 
-
 def play_game():
     game = Deck(deck_dict)
     print("SkunkRat Productions Presents: Blackjack")

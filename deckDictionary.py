@@ -1,3 +1,6 @@
+# This file only holds the dictionary used to create the deck of cards. It was moved here to free up space in cards.py
+
+
 deck_dict = {'ace': 1, 
 '2': 2, 
 '3': 3, 
