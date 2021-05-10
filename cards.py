@@ -39,7 +39,7 @@ class Deck:
         print(f"This is the player total after the deal {self.player_total}")
         return self.player_cards, self.dealer_cards, self.dealer_total, self.player_total
 
-    def player_hit_or_stand(self):  # this will prompt player to hit or stand
+    def player_hit(self):  # this will prompt player to hit or stand
         while self.player_total < 21:
             hit_or_stand = input("Hit or Stand:\n")
             if hit_or_stand.lower() == "hit":
@@ -52,7 +52,7 @@ class Deck:
 
     def player_21(self):
         if self.player_total < 21 and self.dealer_total != 21:
-            self.player_hit_or_stand()
+            self.player_hit()
         elif self.player_total == 21 and self.dealer_total != 21:
             print("You win!")
             quit()  # I want to add play again fucntionality at some point here and after the 'else' statement below
@@ -60,6 +60,7 @@ class Deck:
             print("Stand Off")
             quit()
 
+    # def 
 
         
 
@@ -82,7 +83,8 @@ class Deck:
         return total
 
 
-
-
-
-
+'''
+ace logic
+ if self.player_total > 21 and 'ace' in self.player_cards:
+     'ace' == 1
+'''
