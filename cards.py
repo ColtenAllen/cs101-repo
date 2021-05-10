@@ -13,7 +13,7 @@ def play_game():
         print()
         game.show_dealer_card()
         print()
-        game.player_21() 
+        game.player_21()  # most of the game logic now flows through this method. I don't like how I have done this, but I will fix it at a later date
     else:
         print("Goodbye")
         quit()
@@ -40,7 +40,6 @@ class Deck:
         return self.player_cards, self.dealer_cards, self.dealer_total, self.player_total
 
     def player_hit(self):  # this will prompt player to hit or stand
-        
         while self.hit_or_stand == 'hit' and self.player_total < 21:
             self.hit_or_stand = input("Hit or Stand:\n")
             if self.hit_or_stand.lower() == "hit":
@@ -49,6 +48,10 @@ class Deck:
                 self.show_player_cards()  # shows the player their cards
             elif self.hit_or_stand.lower() == "stand":
                 self.player_stand()
+
+        if self.player_total > 21:  # adds bust logic
+            print("You Bust!")
+            quit()
         return self.player_cards, self.player_total  # self.show_player_cards()                
 
     def player_21(self):
@@ -65,7 +68,19 @@ class Deck:
             quit()
 
     def player_stand(self):
-        print("You want no card sir")
+        print(f"You Stand on {self.player_total}")
+        print(f"Dealer shows {self.dealer_cards}")
+        if self.dealer_total >= 17:
+            print(f"Dealer total: {self.dealer_total}")
+            if self.dealer_total < self.player_total:
+                print("You Win!")
+                quit()
+            elif self.dealer_total == self.player_total:
+                print("Draw")
+                quit()
+            elif self.dealer_total > self.player_total:
+                print("You Lose")
+                quit()
 
         
 
@@ -87,7 +102,7 @@ class Deck:
             total += deck_dict[card]
         return total
 
-    def player_has_ace(self):
+    def player_has_ace(self):  # this should be called anytime the player has an ace in their hand
         if "ace of hearts" in self.player_cards:
             if self.player_total > 21:
                 deck_dict["ace of hearts"] = 1 
@@ -104,7 +119,7 @@ class Deck:
             if self.player_total > 21:
                 deck_dict["ace of diamonds"] = 1
 
-    def dealer_has_ace(self):
+    def dealer_has_ace(self):  # this should be called anytime the dealer has an ace in their hand
         if "ace of hearts" in self.dealer_cards:
             if self.dealer_total > 21:
                 deck_dict["ace of hearts"] = 1 
@@ -121,8 +136,4 @@ class Deck:
             if self.dealer_total > 21:
                 deck_dict["ace of diamonds"] = 1
 
-'''
-ace logic
- if self.player_total > 21 and 'ace' in self.player_cards:
-     'ace' == 1
-'''
+
