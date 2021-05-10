@@ -52,6 +52,9 @@ class Deck:
         if self.player_total > 21:  # adds bust logic
             print("You Bust!")
             quit()
+
+        if self.player_total == 21:
+            self.player_stand()
         return self.player_cards, self.player_total  # self.show_player_cards()                
 
     def player_21(self):
@@ -96,6 +99,7 @@ class Deck:
                 quit()
             elif self.dealer_total > 21:
                 print("Dealer Busts! You Win!")
+                quit()
 
             
 
