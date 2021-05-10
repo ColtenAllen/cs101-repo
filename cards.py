@@ -79,8 +79,26 @@ class Deck:
                 print("Draw")
                 quit()
             elif self.dealer_total > self.player_total:
-                print("You Lose")
+                print("You Lose!")
                 quit()
+
+        elif self.dealer_total < 17:
+            while self.dealer_total < 17:
+                self.dealer_cards.append(random.choice(list(self.cards)))  # this deals dealer another cards
+                self.dealer_total = self.sum_dealer_cards()  # updates dealer total
+                print(f"Dealer turns: {self.dealer_cards[-1]}. Dealer total: {self.dealer_total}")
+            
+            if self.player_total < self.dealer_total < 21:
+                print("You Lose!")
+                quit()
+            elif self.player_total > self.dealer_total < 21:
+                print("You Win!")
+                quit()
+            elif self.dealer_total > 21:
+                print("Dealer Busts! You Win!")
+
+            
+
 
         
 
