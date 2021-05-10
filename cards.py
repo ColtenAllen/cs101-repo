@@ -18,6 +18,13 @@ def play_game():
         print("Goodbye")
         quit()
 
+def _play_again():
+    play_again = input("Do you want to play again? y/n\n")
+    if play_again.lower() == 'y':
+        play_game()
+    else:
+        quit() 
+
     
 class Deck:
     def __init__(self, cards):
@@ -51,7 +58,7 @@ class Deck:
 
         if self.player_total > 21:  # adds bust logic
             print("You Bust!")
-            quit()
+            _play_again()
 
         if self.player_total == 21:
             self.player_stand()
@@ -62,13 +69,13 @@ class Deck:
             self.player_hit()
         elif self.player_total == 21 and self.dealer_total != 21:
             print("You Win!")
-            quit()  # I want to add play again fucntionality at some point here and after the 'else' statement below
+            _play_again() 
         elif self.player_total != 21 and self.dealer_total == 21:
             print("You Lose!")
-            quit()
+            _play_again()
         else:
             print("Stand Off")
-            quit()
+            _play_again()
 
     def player_stand(self):
         print(f"You Stand on {self.player_total}")
@@ -77,13 +84,13 @@ class Deck:
             print(f"Dealer total: {self.dealer_total}")
             if self.dealer_total < self.player_total:
                 print("You Win!")
-                quit()
+                _play_again()
             elif self.dealer_total == self.player_total:
                 print("Draw")
-                quit()
+                _play_again()
             elif self.dealer_total > self.player_total:
                 print("You Lose!")
-                quit()
+                _play_again()
 
         elif self.dealer_total < 17:
             while self.dealer_total < 17:
@@ -93,13 +100,13 @@ class Deck:
             
             if self.player_total < self.dealer_total < 21:
                 print("You Lose!")
-                quit()
+                _play_again()
             elif self.player_total > self.dealer_total < 21:
                 print("You Win!")
-                quit()
+                _play_again()
             elif self.dealer_total > 21:
                 print("Dealer Busts! You Win!")
-                quit()
+                _play_again()
 
             
 
