@@ -18,24 +18,7 @@ def play_game():
         print("Goodbye")
         quit()
 
-    # check if player dealt 21
     
-
-
-    
-        
-
-  
-
-    '''
-    
-    player_total = game.sum_player_cards()
-    dealer_total = game.sum_dealer_cards()
-    print(dealer_total)
-    print(player_total)
-    game.player_hit_or_stand()
-    '''
-
 class Deck:
     def __init__(self, cards):
         self.cards = cards
@@ -62,17 +45,18 @@ class Deck:
             if hit_or_stand.lower() == "hit":
                 self.player_cards.append(random.choice(list(self.cards)))
                 self.player_total = self.sum_player_cards()
+                self.show_player_cards()
                 print(f"this is the player total {self.player_total}")
-            return self.player_cards, self.show_player_cards(), self.player_total
+        return self.player_cards, self.player_total  # self.show_player_cards()
             #else:
 
     def player_21(self):
         if self.player_total < 21 and self.dealer_total != 21:
             self.player_hit_or_stand()
-        elif self.dealer_total != 21:
+        elif self.player_total == 21 and self.dealer_total != 21:
             print("You win!")
             quit()  # I want to add play again fucntionality at some point here and after the 'else' statement below
-        else:
+        elif self.player_total != 21 and self.dealer_total == 21:
             print("Stand Off")
             quit()
 
