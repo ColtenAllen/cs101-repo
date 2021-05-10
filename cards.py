@@ -12,13 +12,14 @@ def play_game():
         game.show_player_cards()
         print()
         game.show_dealer_card()
-        print() 
+        print()
+        game.player_21() 
     else:
         print("Goodbye")
         quit()
 
     # check if player dealt 21
-    game.player_21()
+    
 
 
     
@@ -52,15 +53,18 @@ class Deck:
             count += 1
         self.dealer_total = self.sum_dealer_cards()  # updates dealer and player totals automatically when deal is called
         self.player_total = self.sum_player_cards()
+        print(f"This is the player total after the deal {self.player_total}")
         return self.player_cards, self.dealer_cards, self.dealer_total, self.player_total
 
     def player_hit_or_stand(self):  # this will prompt player to hit or stand
-        hit_or_stand = input("Hit or Stand:\n")
-        if hit_or_stand.lower() == "hit":
-            self.player_cards.append(random.choice(list(self.cards)))
-            self.player_total = self.sum_player_cards()
+        while self.player_total < 21:
+            hit_or_stand = input("Hit or Stand:\n")
+            if hit_or_stand.lower() == "hit":
+                self.player_cards.append(random.choice(list(self.cards)))
+                self.player_total = self.sum_player_cards()
+                print(f"this is the player total {self.player_total}")
             return self.player_cards, self.show_player_cards(), self.player_total
-        #else:
+            #else:
 
     def player_21(self):
         if self.player_total < 21 and self.dealer_total != 21:
