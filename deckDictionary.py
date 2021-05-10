@@ -1,5 +1,5 @@
 # This file only holds the dictionary used to create the deck of cards. It was moved here to free up space in cards.py
-
+# I am going to have to figure out how to reset the deck every game in order to counteract the ace changing value
 
 deck_dict = {'ace of hearts': 11, 
 '2 of hearts': 2, 
