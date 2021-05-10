@@ -6,8 +6,8 @@ def play_game():
     print("SkunkRat Productions Presents: Blackjack\n")
 
     # Begins game
-    ready = input("Are you ready to play?\n")
-    if ready.lower() == "yes":
+    ready = input("Are you ready to play? y/n\n")
+    if ready.lower() == "y":    
         game.deal()
         game.show_player_cards()
         print()
@@ -98,7 +98,7 @@ class Deck:
                 self.dealer_total = self.sum_dealer_cards()  # updates dealer total
                 print(f"Dealer turns: {self.dealer_cards[-1]}. Dealer total: {self.dealer_total}")
             
-            if self.player_total < self.dealer_total < 21:
+            if self.player_total < self.dealer_total <= 21:
                 print("You Lose!")
                 _play_again()
             elif self.player_total > self.dealer_total < 21:
@@ -107,11 +107,6 @@ class Deck:
             elif self.dealer_total > 21:
                 print("Dealer Busts! You Win!")
                 _play_again()
-
-            
-
-
-        
 
     def show_player_cards(self):   # prints players cards
         print(f"Your hand: {self.player_cards}")
